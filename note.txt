@@ -1,0 +1,50 @@
+-> bắt buộc mỗi chương trình phải có template như sau:
+	.model small
+	.stack 100
+	.data
+		TenBien 	DB(Data Byte) 	"dữ liệu"
+	.code
+		main proc
+			mov ax, @data
+			mov ds, ax
+		main endp
+	END
+
+khai báo chuỗi:
+	Str  DB  [kích thước theo byte] "$" 
+	// dùng  $ để đánh dấu kết thúc chuỗi khi nhập
+đọc chuôi:
+	lea dx, input
+	mov ah, 10
+	int 21h
+	-> in chuỗi sau khi đọc phải +2 // s[0] là kích thước 
+					// s[1] là độ dài chuỗi
+	Ví dụ:
+		lea dx, input + 2
+		mov ah, 9
+		int 21h
+in chuỗi:
+	lea dx, message
+	mov ah, 9
+	int 21h
+
+đọc ký tự:
+	mov ah, 1
+	-> trả về ký tự nằm trong al
+	Ví dụ:
+		mov ah, 1
+		int 21h
+		mov KyTu, al
+in ký tự:
+	mov ah, 2
+	-> tạo 1 ký tự nằm trong dl
+	Ví dụ:
+		mov ah, 2
+		mov dl, KyTu
+		int 21h
+->int 21h là lệnh ngắt khi chạy 1 lệnh mov
+->khi in chuỗi lưu ý thêm ký tự 13,10 trước chuỗi : 13 - xuống dòng
+					 	        10 - đưa con trỏ về đầu dòng			
+
+	
+		
